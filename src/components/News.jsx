@@ -4,6 +4,7 @@ import { Card, Row, Col, Select, Typography, Avatar } from 'antd';
 
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi'
 import { useGetCryptosQuery } from '../services/cryptoApi'
+import Loader from './Loader';
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -15,7 +16,7 @@ const News = ({simplified}) => {
   const {data} = useGetCryptosQuery(100);
   const demoImage = "https://yt3.ggpht.com/ISuAwLelO4AcxyP2vG2NbtgR_WrNLcxpo_QDc4PqkNuZqmEucFk1Juos9aXTDyRox1Q2EtW6wFU=s176-c-k-c0x00ffffff-no-rj"
 
-  if(!cryptoNews?.value) return "Loading..."
+  if(!cryptoNews?.value) return <Loader/>;
   
   return (
     <Row gutter={[24,24]}>

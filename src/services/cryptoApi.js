@@ -6,16 +6,6 @@ const cryptoApiHeaders = {
     'x-rapidapi-key': 'f50ae46fa0msh0c1b011b6bfcb77p148a1bjsna7ba2db515a7'
   }
 
-  const params = {
-    referenceCurrencyUuid: 'yhjMzLPhuIDl',
-    timePeriod: '24h',
-    tiers: '1',
-    orderBy: 'marketCap',
-    orderDirection: 'desc',
-    limit: '50',
-    offset: '0'
-  }
-
 
 const baseUrl = 'https://coinranking1.p.rapidapi.com'
 

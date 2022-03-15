@@ -7,6 +7,8 @@ import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCi
 
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi';
 import LineChart from './LineChart';
+import Loader from './Loader';
+
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -20,12 +22,12 @@ const CryptoDetails = () => {
   const cryptoDetails = data?.data?.coin;
 
   const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
-  if (isFetching) return 'Loading.';
+  if (isFetching) return <Loader/>;
 
   const stats = [
     { title: 'Price to USD', value: `$ ${cryptoDetails?.price && millify(cryptoDetails?.price)}`, icon: <DollarCircleOutlined /> },
     { title: 'Rank', value: cryptoDetails?.rank, icon: <NumberOutlined /> },
-    { title: '24h Volume', value: `$ ${cryptoDetails?.volume && millify(cryptoDetails?.volume)}`, icon: <ThunderboltOutlined /> },
+    { title: '24h Volume', value: `$ ${cryptoDetails?.['24hVolume'] && millify(cryptoDetails?.['24hVolume'])}`, icon: <ThunderboltOutlined /> },
     { title: 'Market Cap', value: `$ ${cryptoDetails?.marketCap && millify(cryptoDetails?.marketCap)}`, icon: <DollarCircleOutlined /> },
     { title: 'All-time-high(daily avg.)', value: `$ ${cryptoDetails?.allTimeHigh?.price && millify(cryptoDetails?.allTimeHigh?.price)}`, icon: <TrophyOutlined /> },
   ];
@@ -83,7 +85,21 @@ const CryptoDetails = () => {
             </Col>
           ))}
         </Col></Col>
-
+        <Col className="coin-desc-link">
+        <Row className="coin-desc">
+          <Title level={3} className="coin-details-heading">What is {cryptoDetails.name}?</Title>
+          {HTMLReactParser(cryptoDetails.description)}
+        </Row>
+        <Col className="coin-links">
+          <Title level={3} className="coin-details-heading">{cryptoDetails.name} Links</Title>
+          {cryptoDetails.links?.map((link) => (
+            <Row className="coin-link" key={link.name}>
+              <Title level={5} className="link-name">{link.type}</Title>
+              <a href={link.url} target="_blank" rel="noreferrer">{link.name}</a>
+            </Row>
+          ))}
+        </Col>
+      </Col>
         
 
     </Col>
