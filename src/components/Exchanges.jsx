@@ -38,6 +38,7 @@ const Exchanges = () => {
               </Panel>
             </Collapse>
           </Col>
+          <div className='space'/>
       </Row>
     </>
   );

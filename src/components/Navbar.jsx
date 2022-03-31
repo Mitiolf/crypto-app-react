@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button, Menu, Avatar } from 'antd';
+import { Button, Menu, Avatar } from 'antd';
 import { Link } from 'react-router-dom';
 import { HomeOutlined, MoneyCollectOutlined, BulbOutlined, FundOutlined, MenuOutlined } from '@ant-design/icons';
 
@@ -30,9 +30,7 @@ const Navbar = () => {
     <div className='nav-container'>
         <div className='logo-container'>
             <Avatar src={icon} size="large" />
-            <Typography.Text level={2} className="logo">
-                <Link to="/">Cryptoverse</Link>    
-            </Typography.Text>
+            <Link className="logo" to="/">Cryptoverse</Link>    
             <Button className="menu-control-container" onClick={() => setActiveMenu(!activeMenu)}><MenuOutlined /></Button>
             </div>
             {activeMenu &&
